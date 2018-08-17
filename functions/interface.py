@@ -8,16 +8,13 @@ class Example(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.initUI()
-
-
-    def initUI(self):
 
         title = QLabel('Title')
         author = QLabel('Author')
         review = QLabel('Review')
 
-        titleEdit = QLineEdit()
+        self.titleEdit = QLineEdit()
+        self.wrapper()
         authorEdit = QLineEdit()
         reviewEdit = QTextEdit()
 
@@ -25,7 +22,7 @@ class Example(QWidget):
         grid.setSpacing(10)
 
         grid.addWidget(title, 1, 0)
-        grid.addWidget(titleEdit, 1, 1)
+        grid.addWidget(self.titleEdit, 1, 1)
 
         grid.addWidget(author, 2, 0)
         grid.addWidget(authorEdit, 2, 1)
@@ -39,9 +36,18 @@ class Example(QWidget):
         self.setWindowTitle('Review')
         self.show()
 
+    def wrapper(self):
+        name=self.titleEdit.text()
+        self.printing(name)
+    def printing(self,name):
+        print(name)
+
 
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
     ex = Example()
+    #print('Title: ', ex.titleEdit.text())
+    ex.wrapper()
     sys.exit(app.exec_())
+
